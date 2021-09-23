@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DoublePeaks", "DoublePeaks\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CurveFitting", "CurveFitting\CurveFitting.vcxproj", "{E51A8D1D-8E38-4225-9A04-016AD74E3C6C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HighDimensional", "HighDimensional\HighDimensional.vcxproj", "{E59E3AC4-84A0-495C-9894-0257A8F86C5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{E51A8D1D-8E38-4225-9A04-016AD74E3C6C}.Release|x64.Build.0 = Release|x64
 		{E51A8D1D-8E38-4225-9A04-016AD74E3C6C}.Release|x86.ActiveCfg = Release|Win32
 		{E51A8D1D-8E38-4225-9A04-016AD74E3C6C}.Release|x86.Build.0 = Release|Win32
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Debug|x64.ActiveCfg = Debug|x64
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Debug|x64.Build.0 = Debug|x64
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Debug|x86.ActiveCfg = Debug|Win32
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Debug|x86.Build.0 = Debug|Win32
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Release|x64.ActiveCfg = Release|x64
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Release|x64.Build.0 = Release|x64
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Release|x86.ActiveCfg = Release|Win32
+		{E59E3AC4-84A0-495C-9894-0257A8F86C5C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
