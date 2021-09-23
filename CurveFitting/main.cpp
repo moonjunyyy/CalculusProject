@@ -44,21 +44,20 @@ public:
 		double Sigma = 0;
 		for (int i = 0; i < N; i++)
 		{
-			Sigma += this->footofPerpendicular(x[i], y[i]).dist(x[i], y[i]);
+			double D = this->footofPerpendicular(x[i], y[i]).dist(x[i], y[i]);
+			Sigma += pow(D,2.0);
 		}
 		return Sigma;
 	}
 	double sigmaDsquare(Point* p, int N) 
 	{
+		double Sigma = 0;
 		for (int i = 0; i < N; i++)
 		{
-			double Sigma = 0;
-			for (int i = 0; i < N; i++)
-			{
-				Sigma += this->footofPerpendicular(p[i]).dist(p[i]);
-			}
-			return Sigma;
+			double D = this->footofPerpendicular(p[i]).dist(p[i]);
+			Sigma += pow(D, 2.0);
 		}
+		return Sigma;
 	}
 };
 
@@ -76,7 +75,7 @@ double dfabdb(double a, double b, double db, Point* p, int N)
 class GradientDesend2D
 {
 public:
-	double psi = 0.002, eta = 0.0001;
+	double psi = 0.0005, eta = 0.000001;
 	int iteration = 0;
 	double A_0 = 0, B_0 = 0, A_1 = 0, B_1 = 0;
 	double EE = 100.;
@@ -132,6 +131,7 @@ int main(int argc, char* argv[])
 	random_device rd;
 	mt19937_64 gen(rd());
 	uniform_real_distribution<double> dist(-10, 10);
+	uniform_real_distribution<double> dist2(-1, 1);
 
 	Point P1(3., 1.);
 	Straight S1(1., 0, -1.);
@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
 	cout << P1.dist(P2) << endl;
 
 	Point* Ps;
-	Ps = new Point[4];
+	Ps = new Point[Num];
 	
 	for (int i = 0; i < Num; i++)
 	{
@@ -157,16 +157,16 @@ int main(int argc, char* argv[])
 		cout << *(Ps + i) << endl;
 	}
 
-	GradientDesend2D GD2D(dist(gen), dist(gen), Ps);
+	GradientDesend2D GD2D(dist2(gen), dist2(gen), Ps);
 	for (int i = 0; i < 5; i++)
 	{
 		cout << "starting at A = " << setprecision(4) << GD2D.A_0 << ", B = " << setprecision(4) << GD2D.B_0;
 		GD2D.findLocalMinima(false);
-		GD2D.initGradient(dist(gen), dist(gen));
+		GD2D.initGradient(dist2(gen), dist2(gen));
 		cout << endl;
 	}
 
-	double _x = dist(gen), _y = dist(gen);
+	double _x = dist2(gen), _y = dist2(gen);
 	GradientDesend2D* pGD2D;
 
 	pGD2D = new GradientDesend2D[20];
@@ -174,10 +174,9 @@ int main(int argc, char* argv[])
 	{
 		pGD2D[i] = GradientDesend2D(_x, _y, Ps);
 	}
-	cout << "Test psi from 0.001 to 0.021" << endl;
 	for (int i = 0; i < 20; i++)
 	{
-		pGD2D[i].psi = 0.001 * (i + 1);
+		pGD2D[i].psi = 0.0005 * (i + 1);
 		pGD2D[i].findLocalMinima(false);
 	}
 	delete[] pGD2D;
@@ -187,10 +186,9 @@ int main(int argc, char* argv[])
 	{
 		pGD2D[i] = GradientDesend2D(_x, _y, Ps);
 	}
-	cout << endl << "Test psi from 0.0001 to 0.0021" << endl;
 	for (int i = 0; i < 20; i++)
 	{
-		pGD2D[i].eta = 0.0002 * (i + 1);
+		pGD2D[i].eta = 0.00001 * (i + 1);
 		pGD2D[i].findLocalMinima(false);
 	}
 	delete[] pGD2D;
